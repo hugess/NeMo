@@ -8,11 +8,9 @@ Features:
 - navigation across dataset (sorting, filtering)
 - inspection of individual utterances (waveform, spectrogram, audio player)
 
-![Data Explorer](screenshot.png)
-
-To run the tool, please make sure that requirements are installed and run:
-
+Please make sure that requirements are installed and run:
 ```
 python data_explorer.py path_to_manifest.json
 ```
 
+![Data Explorer](screenshot.png)
