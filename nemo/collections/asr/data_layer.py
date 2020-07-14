@@ -515,12 +515,12 @@ class TarredAudioToTextDataLayer(DataLayerNM):
             worker_info = torch.utils.data.get_worker_info()
             if worker_info is None:
                 worker_id=0
-                logging.info("begin_idx {begin_idx} end_idx {end_idx} global_rank {global_rank} main_process")
+                logging.info(f"begin_idx {begin_idx} end_idx {end_idx} global_rank {global_rank} main_process")
             else:
                 worker_id = worker_info.id
                 begin_idx = (len(audio_tar_filepaths) // (world_size * num_workers)) * (global_rank + worker_id)
                 end_idx = begin_idx + (len(audio_tar_filepaths) // (world_size * num_workers))
-                logging.info("begin_idx {begin_idx} end_idx {end_idx} global_rank {global_rank} worker_id {worker_id}")
+                logging.info(f"begin_idx {begin_idx} end_idx {end_idx} global_rank {global_rank} worker_id {worker_id}")
             audio_tar_filepaths = audio_tar_filepaths[begin_idx:end_idx]
 
         # Put together WebDataset
