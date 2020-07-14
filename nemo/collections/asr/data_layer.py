@@ -493,6 +493,7 @@ class TarredAudioToTextDataLayer(DataLayerNM):
         self._num_workers = num_workers
         pad_id = 0 if pad_id is None else pad_id
         self.collate_fn = partial(seq_collate_fn, token_pad_value=pad_id)
+        logging.info(f"audio_tar_paths before: {audio_tar_filepaths}")
 
         # Check for distributed and partition shards accordingly
         if torch.distributed.is_available() and torch.distributed.is_initialized():
@@ -511,7 +512,8 @@ class TarredAudioToTextDataLayer(DataLayerNM):
             begin_idx = (len(audio_tar_filepaths) // world_size) * global_rank
             end_idx = begin_idx + (len(audio_tar_filepaths) // world_size)
             #audio_tar_filepaths = audio_tar_filepaths[begin_idx:end_idx]
-            logging.info("Num workers: {num_workers}")
+            logging.info(f"Num workers: {num_workers}")
+            logging.info(f"audio_tar_paths after: {audio_tar_filepaths}")
             worker_info = torch.utils.data.get_worker_info()
             if worker_info is None:
                 worker_id=0
