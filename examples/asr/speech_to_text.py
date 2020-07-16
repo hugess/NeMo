@@ -14,8 +14,9 @@
 
 import hydra
 import pytorch_lightning as pl
-from nemo.utils import logging
+
 from nemo.collections.asr.models import EncDecCTCModel
+from nemo.utils import logging
 
 
 """
