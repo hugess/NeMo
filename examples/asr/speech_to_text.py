@@ -14,7 +14,7 @@
 
 import hydra
 import pytorch_lightning as pl
-
+from nemo.utils import logging
 from nemo.collections.asr.models import EncDecCTCModel
 
 
@@ -66,6 +66,7 @@ Overide optimizer entirely
 def main(cfg):
     trainer = pl.Trainer(**cfg.pl.trainer)
     asr_model = EncDecCTCModel(cfg=cfg.model, trainer=trainer)
+    logging.info(f"The model has {asr_model.num_weights} weights.")
     trainer.fit(asr_model)
 
 
